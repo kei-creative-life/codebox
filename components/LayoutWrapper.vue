@@ -13,8 +13,5 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-.bg-sub {
-  background-color: #edf2f7;
-}
-</style>>
+<style></style>
+>

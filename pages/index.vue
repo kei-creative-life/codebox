@@ -2,7 +2,7 @@
   <layout-wrapper>
     <div class="flex-1 bg-sub">
       <base-heading>おすすめ記事</base-heading>
-      <layout-card link="/blog-detail" />
+      <layout-card />
       <layout-button name="記事一覧" link="/blogs" />
     </div>
   </layout-wrapper>
@@ -17,11 +17,4 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-.text-main {
-  color: #139299;
-}
-.bg-sub {
-  background-color: #edf2f7;
-}
-</style>
+<style></style>

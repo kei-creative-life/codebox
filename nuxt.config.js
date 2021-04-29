@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const { API_KEY, API_URL } = process.env
 
 export default {
@@ -18,8 +20,40 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  // ページング用ルーティング設定
+  router: {
+    extendRoutes(routes, resolve) {
+      routes.push({
+        path: '/page/:p',
+        component: resolve(__dirname, 'pages/blogs.vue'),
+        name: 'page',
+      })
+    },
+  },
+
+  // ページング用のHTML生成
+  generate: {
+    async routes() {
+      const limit = 10
+      const range = (start, end) =>
+        [...Array(end - start + 1)].map((_, i) => start + i)
+
+      // 一覧のページング
+      const pages = await axios
+        .get(`https://codebox.microcms.io/api/v1/blogs?limit=0`, {
+          headers: { 'X-API-KEY': API_KEY },
+        })
+        .then((res) =>
+          range(1, Math.ceil(res.data.totalCount / limit)).map((p) => ({
+            route: `/page/${p}`,
+          }))
+        )
+      return pages
+    },
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['@/assets/css/common.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],

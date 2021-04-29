@@ -7,13 +7,13 @@
             class="grid grid-cols-3 grid-rows-7 grid-flow-row overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"
           >
             <div class="col-span-3 row-span-4 p-1 m-1">
-              <a :href="link">
+              <nuxt-link :to="`/${id}`">
                 <img
-                  src="https://picsum.photos/640/400/?random"
-                  alt="Placeholder"
+                  :src="thumbnail"
+                  alt="Thumbnail Image"
                   class="rounded-t-xl object-cover h-48 w-full"
                 />
-              </a>
+              </nuxt-link>
             </div>
 
             <div class="col-span-3 row-span-1">
@@ -21,53 +21,26 @@
                 class="flex items-center justify-between leading-tight p-2 md:p-4"
               >
                 <h1 class="text-lg">
-                  <a class="no-underline hover:underline text-black" href="#">
+                  <nuxt-link :to="`/${id}`">
                     {{ title }}
-                  </a>
+                  </nuxt-link>
                 </h1>
-                <p class="text-grey-darker text-sm">{{ createdAt }}</p>
               </header>
+              <h2 class="px-2 pb-2 md:px-4 pb-2">{{ content }}</h2>
             </div>
 
             <div class="col-span-3 row-span-1">
-              <p>{{ content }}</p>
               <ul
                 class="flex flex-row pl-2 text-gray-600 overflow-x-scroll hide-scroll-bar"
               >
                 <li class="py-1">
                   <div
-                    class="transition duration-300 ease-in-out rounded-2xl mr-1 px-2 py-1 hover:bg-blue-200 text-gray-500 hover:text-gray-800"
+                    class="transition duration-300 ease-in-out rounded-2xl mr-1 px-2 py-1 hover:bg-blue-200 text-sub hover:text-gray-800"
                   >
-                    <a class="" href="#">#hogehoge</a>
-                  </div>
-                </li>
-                <li class="py-1">
-                  <div
-                    class="transition duration-300 ease-in-out rounded-2xl mr-1 px-2 py-1 hover:bg-blue-200 text-gray-500 hover:text-gray-800"
-                  >
-                    <a class="" href="#">#fugafuga</a>
-                  </div>
-                </li>
-
-                <li class="py-1">
-                  <div
-                    class="transition duration-300 ease-in-out rounded-2xl mr-1 px-2 py-1 hover:bg-blue-200 text-gray-500 hover:text-gray-800"
-                  >
-                    <a class="" href="#">#foofoo</a>
-                  </div>
-                </li>
-                <li class="py-1">
-                  <div
-                    class="transition duration-300 ease-in-out rounded-2xl mr-1 px-2 py-1 hover:bg-blue-200 text-gray-500 hover:text-gray-800"
-                  >
-                    <a class="" href="#">#barbarbar</a>
-                  </div>
-                </li>
-                <li class="py-1">
-                  <div
-                    class="transition duration-300 ease-in-out rounded-2xl mr-1 px-2 py-1 hover:bg-blue-200 text-gray-500 hover:text-gray-800"
-                  >
-                    <a class="" href="#">#hogefugafoo</a>
+                    <a class="" href="#"
+                      ><span class="pr-1">#</span
+                      >{{ category ? category : 'Home' }}</a
+                    >
                   </div>
                 </li>
               </ul>
@@ -83,22 +56,31 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'layoutCard',
+  name: 'LayoutCard',
   props: {
-    link: {
+    id: {
       type: String,
-      required: true,
+      default: '',
     },
     title: {
       type: String,
-      required: true,
+      default: '',
     },
     content: {
       type: String,
-      required: true,
+      default: '',
+    },
+    thumbnail: {
+      type: String,
+      default: 'https://picsum.photos/640/400/?random',
+    },
+    category: {
+      type: String,
+      default: 'none',
     },
     createdAt: {
-      type: Date,
+      type: String,
+      default: '',
     },
   },
 })

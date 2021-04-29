@@ -2,9 +2,9 @@
   <div class="text-center">
     <button
       type="button"
-      class="bg-main text-white px-3 py-2 rounded-md font-bold"
+      class="text-sm md:text-base bg-main text-white px-6 py-4 rounded-md font-bold"
     >
-      <a :href="link"> {{ name }}</a>
+      <nuxt-link :to="link">{{ name }}</nuxt-link>
     </button>
   </div>
 </template>
@@ -26,8 +26,4 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-.bg-main {
-  background-color: #139299;
-}
-</style>
+<style></style>

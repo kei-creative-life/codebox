@@ -83,8 +83,4 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-.border-main {
-  border-color: #139299;
-}
-</style>
+<style></style>
